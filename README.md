@@ -9,6 +9,8 @@ The _Backstage Theme Creator_ is a fork of the [_mui-theme-creator_](https://git
 
 ## To be done
 
+The project is in a very early state & has still some work to do to work smoothly:
+
 - Support Material UI v5 `ThemeOptions` & make them the primary input
 - Fix routing
 - Improve `vite` build to support the Homepage plugin
