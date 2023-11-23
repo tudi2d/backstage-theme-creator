@@ -1,8 +1,11 @@
-# Backstage Theme Creator
+# [Backstage Theme Creator](https://backstage-theme-creator.vercel.app)
+
 
 The _Backstage Theme Creator_ is a fork of the [_mui-theme-creator_](https://github.com/bareynol/mui-theme-creator) created by @bareynol. It helps visualising changes to the `ThemeOptions` in a Backstage application by showcasing them in a small example application. In difference to the `MUI Theme Creator` this application is a React SPA not build on Gatsby.
 
-https://backstage-theme-creator.vercel.app
+
+<img width="1800" alt="Screenshot 2023-11-23 at 16 01 09" src="https://github.com/tudi2d/backstage-theme-creator/assets/8904624/45522de1-66db-4cd9-8a0c-e828546ec25f">
+
 
 ## To be done
 
