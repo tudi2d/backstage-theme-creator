@@ -1,5 +1,5 @@
 import { RootState, PreviewSize } from "src/state/types"
-import { createMuiTheme, ThemeOptions } from "@material-ui/core"
+import { createTheme, ThemeOptions } from "@material-ui/core"
 import { generateThemeId, isSetEq } from "src/utils"
 import editorReducer, {
   initialState as editorInitialState,
@@ -17,7 +17,7 @@ const initialState: RootState = {
   editor: editorInitialState,
   themeId: defaultThemeId,
   themeOptions: defaultThemeOptions, // the object loaded into createMuiTheme
-  themeObject: createMuiTheme(defaultThemeOptions),
+  themeObject: createTheme(defaultThemeOptions),
   savedThemes: {
     [defaultThemeId]: {
       id: defaultThemeId,
@@ -292,9 +292,9 @@ const createPreviewMuiTheme = (
     xl: { xs: 0, sm: 1, md: 2, lg: 3, xl: 4 },
   }
 
-  if (!previewSize) return createMuiTheme(themeOptions)
+  if (!previewSize) return createTheme(themeOptions)
 
-  return createMuiTheme(
+  return createTheme(
     deepmerge(
       { breakpoints: { values: spoofedBreakpoints[previewSize] } },
       themeOptions

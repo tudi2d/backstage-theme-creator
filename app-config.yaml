@@ -1,0 +1,16 @@
+app:
+  title: Backstage Plugin Template
+  baseUrl: http://localhost:3003
+  # experimental:
+  #   packages: all # ✨
+
+backend:
+  # Used for enabling authentication, secret is shared by all backend plugins
+  # See https://backstage.io/docs/auth/service-to-service-auth for
+  # information on the format
+  # auth:
+  #   keys:
+  #     - secret: ${BACKEND_SECRET}
+  baseUrl: http://localhost:7007
+  listen:
+    port: 7007

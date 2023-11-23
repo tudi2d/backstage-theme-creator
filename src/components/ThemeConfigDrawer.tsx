@@ -4,8 +4,8 @@ import Grid from "@material-ui/core/Grid"
 import { makeStyles, useTheme, useMediaQuery } from "@material-ui/core"
 import { useSelector, useDispatch } from "react-redux"
 import { RootState } from "src/state/types"
-import ThemeTools from "./ThemeTools/ThemeTools"
-import MonacoThemeCodeEditor from "src/components/MonacoThemeCodeEditor"
+import ThemeTools from "./theme-creator/ThemeTools/ThemeTools"
+import MonacoThemeCodeEditor from "./theme-creator/MonacoThemeCodeEditor"
 
 const drawerWidth: React.CSSProperties["width"] = 400
 
@@ -66,7 +66,6 @@ const ThemeConfigDrawer = () => {
           {/* Use themeId as key so that editor is torn down and rebuilt with new theme */}
           <MonacoThemeCodeEditor key={themeId} />
         </Grid>
-
         <Grid item className={classes.controlsWrapper}>
           <ThemeTools />
         </Grid>

@@ -11,9 +11,9 @@ import {
   IconButton,
   Hidden,
 } from "@material-ui/core"
-import MuiComponentSamples from "src/components/MuiComponentSamples"
-import PreviewWindow from "src/components/PreviewWindow"
-import SavedThemes from "src/components/SavedThemes/SavedThemes"
+import MuiComponentSamples from "src/components/theme-creator/MuiComponentSamples"
+import { BackstageApp } from "src/components/backstage"
+import SavedThemes from "src/components/theme-creator/SavedThemes/SavedThemes"
 import { useDispatch, useSelector } from "react-redux"
 import { setActiveTab } from "src/state/actions"
 import { RootState } from "src/state/types"
@@ -86,7 +86,7 @@ const MainWindow = () => {
         </Hidden>
       </AppBar>
       <div className={classes.mainWindow}>
-        {activeTab === "preview" && <PreviewWindow />}
+        {activeTab === "preview" && <BackstageApp />}
 
         {activeTab === "components" && (
           <div className={classes.componentsTabRoot}>

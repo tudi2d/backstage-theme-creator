@@ -1,11 +1,46 @@
-import React, { useEffect, useState } from "react"
-import { ThemeProvider, Theme, makeStyles } from "@material-ui/core/styles"
+import { BackstageOverrides } from "@backstage/core-components"
+import {
+  UnifiedThemeProvider,
+  createUnifiedThemeFromV4,
+  themes,
+} from "@backstage/theme"
+import Paper from "@material-ui/core/Paper"
+import { Theme, makeStyles } from "@material-ui/core/styles"
+import { CSSProperties } from "@material-ui/core/styles/withStyles"
+import deepmerge from "deepmerge"
+import React from "react"
 import { useSelector } from "react-redux"
 import { RootState } from "src/state/types"
-import Paper from "@material-ui/core/Paper"
 
 interface ThemeWrapperProps {
   children: React.ReactNode | React.ReactNodeArray
+}
+
+const createCustomThemeOverrides = (theme: Theme): BackstageOverrides => {
+  return {
+    BackstageSidebar: {
+      drawer: {
+        position: "absolute",
+      },
+    },
+    BackstagePage: {
+      root: {
+        height: "100%",
+      },
+    },
+    /** TODO: MobileSidebar needs overridable name */
+    MuiBottomNavigation: {
+      root: {
+        position: value => {
+          // @ts-ignore: `value` is object with {children, className, component, data-test-id}
+          if (value["data-testid"] === "mobile-sidebar-root") {
+            return "absolute !important" as CSSProperties["position"]
+          }
+          return "inherit"
+        },
+      },
+    },
+  }
 }
 
 /**
@@ -14,12 +49,32 @@ interface ThemeWrapperProps {
  * set by the theme editor sidebar
  */
 const ThemeWrapper = ({ children }: ThemeWrapperProps) => {
-  const themeObject = useSelector((state: RootState) => state.themeObject)
+  const themeObject: Theme = useSelector(
+    (state: RootState) => state.themeObject
+  )
+  const lightV4 = themes.light.getTheme("v4") as Theme
+  const darkV4 = themes.dark.getTheme("v4") as Theme
+
+  const combinedLightTheme = deepmerge(lightV4, themeObject)
+  const combinedDarkTheme = deepmerge(darkV4, themeObject)
+
+  let combinedTheme =
+    themeObject.palette.type === "light"
+      ? combinedLightTheme
+      : combinedDarkTheme
+
+  const unifiedTheme = createUnifiedThemeFromV4({
+    ...combinedTheme,
+    overrides: {
+      ...combinedTheme.overrides,
+      ...createCustomThemeOverrides(combinedTheme),
+    },
+  })
 
   return (
-    <ThemeProvider theme={themeObject}>
+    <UnifiedThemeProvider theme={unifiedTheme}>
       <ThemeContainer>{children}</ThemeContainer>
-    </ThemeProvider>
+    </UnifiedThemeProvider>
   )
 }
 

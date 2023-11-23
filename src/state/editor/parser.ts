@@ -27,7 +27,9 @@ import { verbose } from "src/utils"
  * @param code 
  */
 export function parseEditorOutput(code: string) {
+  console.log(code)
   const trimmedCode = trimCode(code)
+  console.log(trimmedCode)
   try {
     return JSON5.parse(trimmedCode)
   } catch (err) {
@@ -63,7 +65,7 @@ export function trimCode(code: string) {
   let codeLines = code.split("\n")
 
   // remove top two lines
-  codeLines = codeLines.slice(2)
+  codeLines = codeLines.slice(3)
 
   // replace exports.themeOptions with open bracket for object
   codeLines[0] = "{" // editor disables editing this line

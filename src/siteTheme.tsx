@@ -1,8 +1,9 @@
+import { themes } from "@backstage/theme"
 import {
-  createMuiTheme,
   ThemeOptions,
   Theme,
   PaletteType,
+  createTheme,
 } from "@material-ui/core"
 
 export const defaultThemeOptions: ThemeOptions = {
@@ -17,18 +18,12 @@ export const defaultThemeOptions: ThemeOptions = {
   },
 }
 
-export const defaultTheme: Theme = createMuiTheme()
+export const defaultTheme: Theme = createTheme()
+
+const backstageDark = themes.dark.getTheme("v4")
 
 export const themeConfig: ThemeOptions = {
-  palette: {
-    type: "dark",
-    primary: {
-      main: "#90caf9",
-    },
-    secondary: {
-      main: "#f48fb1",
-    },
-  },
+  palette: backstageDark?.palette,
   props: {
     MuiAccordion: {
       square: true,
@@ -94,4 +89,4 @@ export const themeConfig: ThemeOptions = {
   },
 }
 
-export default createMuiTheme(themeConfig)
+export default createTheme(themeConfig)
