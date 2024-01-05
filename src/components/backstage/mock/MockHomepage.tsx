@@ -13,11 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/* 
-// eslint-disable-next-line @backstage/no-undeclared-imports
+
 import React from "react"
 
-import { Content, InfoCard, ItemCard, Page } from "@backstage/core-components"
+import { Content, Page } from "@backstage/core-components"
 import {
   MockStarredEntitiesApi,
   catalogApiRef,
@@ -82,11 +81,11 @@ export const MockHomepagePlugin = () => {
             <Grid container item xs={12}>
               <Grid item xs={12} md={6}>
                 <HomePageToolkit
-                  tools={Array(8).fill({
+                  tools={Array.from({ length: 8 }, (_, i) => ({
                     url: "/",
                     label: "link",
-                    icon: <TemplateBackstageLogoIcon />,
-                  })}
+                    icon: <TemplateBackstageLogoIcon key={i} />,
+                  }))}
                 />
               </Grid>
               <Grid item xs={12} md={6}>
@@ -99,4 +98,3 @@ export const MockHomepagePlugin = () => {
     </TestApiProvider>
   )
 }
- */

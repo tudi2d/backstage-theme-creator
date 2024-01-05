@@ -49,7 +49,11 @@ export default defineConfig({
     },
   },
   define: {
-    "process.env": process.env || { DEBUG: undefined },
+    "process.env": {
+      ...(process.env || { DEBUG: undefined }),
+      // Experimental support for Vite by Backstage since release v1.20
+      VITE_EXPERIMENTAL: 1,
+    },
   },
 
   optimizeDeps: {

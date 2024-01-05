@@ -150,7 +150,7 @@ export const useSaveKey = (editorRef: EditorRefType, onSave: Function) => {
     const actionBinding = editorRef.current?.addAction({
       id: "save-editor-contents",
       label: "Save Editor Theme Contents",
-      keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KEY_S],
+      keybindings: [monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS],
       contextMenuGroupId: "navigation",
       contextMenuOrder: 1,
       run: () => onSave(),
@@ -158,7 +158,7 @@ export const useSaveKey = (editorRef: EditorRefType, onSave: Function) => {
 
     // global save key listener
     const handleGlobalSave = (event: KeyboardEvent) => {
-      if (event.ctrlKey && event.code == "KeyS") {
+      if ((event.ctrlKey || event.metaKey) && event.code == "KeyS") {
         event.preventDefault()
         onSave()
       }

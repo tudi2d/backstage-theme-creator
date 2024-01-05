@@ -48,14 +48,17 @@ export default function useReadOnlyLines(editorRef: EditorRefType) {
           monaco.KeyCode.PageDown,
         ]
         const eventIsPaste =
-          event.ctrlKey && event.keyCode === monaco.KeyCode.KEY_V
+          (event.ctrlKey || event.metaKey) &&
+          event.keyCode === monaco.KeyCode.KeyV
         const eventIsCut =
-          event.ctrlKey && event.keyCode === monaco.KeyCode.KEY_X
+          (event.ctrlKey || event.metaKey) &&
+          event.keyCode === monaco.KeyCode.KeyX
 
         if (
           eventIsPaste ||
           eventIsCut ||
-          (!event.ctrlKey && !allowedKeys.includes(event.keyCode))
+          (!(event.ctrlKey || event.metaKey) &&
+            !allowedKeys.includes(event.keyCode))
         ) {
           event.preventDefault()
           event.stopPropagation()
@@ -161,9 +164,8 @@ export const useReadOnlyStyles = (editorRef: EditorRefType) => {
     applyStyles()
 
     // when model content changes, ensure that styles are reapplied
-    const modelContentChangeBinding = editorRef.current?.onDidChangeModelContent(
-      applyStyles
-    )
+    const modelContentChangeBinding =
+      editorRef.current?.onDidChangeModelContent(applyStyles)
 
     return () => {
       editorRef.current?.deltaDecorations(decorationIds, []) // wipe any existing decorations

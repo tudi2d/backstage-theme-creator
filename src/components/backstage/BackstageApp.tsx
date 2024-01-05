@@ -10,6 +10,7 @@ import { Root } from "./Root"
 import { apis } from "./apis"
 import { MockCatalogPlugin } from "./mock/MockCatalogPlugin"
 import * as plugins from "./plugins"
+import { MockHomepagePlugin } from "./mock/MockHomepage"
 
 export const previewNavTabsId = "preview-nav-tabs"
 const app = createApp({
@@ -51,7 +52,7 @@ const component = (
         <FlatRoutes>
           <Navigate key="/" to="catalog" replace />
           {/* Home plugin does not work in production due to weird dependency-vite issue with `@rfjs` material UI import*/}
-          {/* <Route path="/home" element={<MockHomepagePlugin />} /> */}
+          <Route path="/home" element={<MockHomepagePlugin />} />
           <Route path="/api-docs" element={<ApiExplorerPage />} />
           <Route path="/catalog" element={<MockCatalogPlugin />} />
           <Route

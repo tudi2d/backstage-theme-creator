@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-// eslint-disable-next-line @backstage/no-undeclared-imports
 import React from "react"
 
 import { EntityAboutCard, EntityLayout } from "@backstage/plugin-catalog"

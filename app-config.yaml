@@ -14,3 +14,8 @@ backend:
   baseUrl: http://localhost:7007
   listen:
     port: 7007
+
+catalog:
+  locations:
+    - type: file
+      target: /Users/freben/dev/github/backstage/a.local.yaml
